@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.mycompany</groupId>
+	<artifactId>mule4-skeleton-project</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>mule-application</packaging>
+
+	<name>mule4-skeleton-project</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<app.runtime>4.1.1</app.runtime>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<mule.maven.plugin.version>3.1.2</mule.maven.plugin.version>
+
+		<project.name>mule4-skeleton-project</project.name>
+		<type>example</type>
+	</properties>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources-filtered/</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources/</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<armDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<server>anypoint-platform</server>
+						<target>${deploy.target}</target>
+						<targetType>${deploy.targetType}</targetType>
+						<environment>${deploy.environment}</environment>
+						<muleVersion>${app.runtime}</muleVersion>
+						<businessGroup>${deploy.businessGroup}</businessGroup>
+						<applicationName>${artifactId}-${instance.id}-${deploy.app.suffix}</applicationName>
+					</armDeployment>
+				</configuration>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-http-connector</artifactId>
+			<version>1.2.0</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-sockets-connector</artifactId>
+			<version>1.1.1</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.modules</groupId>
+			<artifactId>mule-secure-configuration-property-module</artifactId>
+			<classifier>mule-plugin</classifier>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.consulting.logging</groupId>
+			<artifactId>minimal-logging</artifactId>
+			<version>1.0.1</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+	</dependencies>
+
+</project>

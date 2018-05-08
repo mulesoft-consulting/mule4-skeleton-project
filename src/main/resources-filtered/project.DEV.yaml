@@ -1,0 +1,5 @@
+#project.DEV.yaml is equivalent to the same name with .properties extension
+# Properties specific for environment DEV.
+test:
+    propertyA: "testValueA"
+    propertyB: "testValueB"

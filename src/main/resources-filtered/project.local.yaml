@@ -1,0 +1,5 @@
+#project.local.yaml is equivalent to the same name with .properties extension
+# Properties specific for environment local.
+test:
+    propertyA: "testValueA"
+    propertyB: "testValueB"

@@ -1,0 +1,5 @@
+#project.yaml is equivalent to the same name with .properties extension
+# This file must include properties that are common for different instances of the application installation.
+example:
+    project:
+        property32: "exampleProjectProperty32Value"

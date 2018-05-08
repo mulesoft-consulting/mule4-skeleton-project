@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:min-log="http://www.mulesoft.org/schema/mule/min-log"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/min-log http://www.mulesoft.org/schema/mule/min-log/current/mule-min-log.xsd">
+	<flow name="logicFlow" doc:id="937a2d6c-1825-4e1e-8d1d-c8287642f52d">
+		<scheduler doc:name="Scheduler" doc:id="a8642b09-98c2-411f-935e-c5bd984e3e72">
+			<scheduling-strategy>
+				<fixed-frequency frequency="10" timeUnit="MINUTES" />
+			</scheduling-strategy>
+		</scheduler>
+		<min-log:new doc:name="Set transaction properties"
+			doc:id="03a758b5-7519-4a26-b745-754aebe0c195" target="transactionProperties"
+			headers="#[{}]" />
+		<min-log:timed transactionProperties="#[vars.transactionProperties]"
+			doc:name="Timed" doc:id="63086e80-b2df-4df4-953a-cf83ddea857c">
+			<min-log:put doc:name="Put example.project.property32"
+				doc:id="c5bb0d4e-3d86-4325-bf30-6b702502b6a9" key="example.project.property32"
+				value="${secure::example.project.property32}" target="transactionProperties"
+				transactionProperties="#[vars.transactionProperties]" />
+			<min-log:put doc:name="Put test.propertyA"
+				doc:id="c5bb0d4e-3d86-4325-bf30-6b702502b6a9" key="test.propertyA"
+				value="${secure::test.propertyA}" target="transactionProperties"
+				transactionProperties="#[vars.transactionProperties]" />
+			<min-log:log level="WARN" msg="A Test warning"
+				transactionProperties="#[vars.transactionProperties]" doc:name="Example WARN" />
+		</min-log:timed>
+	</flow>
+</mule>
