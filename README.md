@@ -1,6 +1,8 @@
 # mule4-skeleton-project
 The skeleton-project is an example application that can be used as a template for building a Mule application.
 
+Note, the scope features of minimal-logging are not displayed correctly by Studio 7.1 or 7.2. Support for displaying SDK connector scopes is expected in Studio 7.3.
+
 ## Uses
 
 The project contains examples using:
