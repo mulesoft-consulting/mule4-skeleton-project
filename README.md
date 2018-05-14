@@ -14,3 +14,10 @@ The project contains examples using:
 ## Purpose
 This project is an example only. It contains a scheduling component to periodically (every ten minutes), use the minimal-logging operations to generate a new transaction id, display three (enter, warning and exit) log messages.
 
+
+## Runtime properties
+
+The properties mule.env and mule.key need to be set in the Mule runtime in order for the property configurations to be located. 
+For Studio, add the following VM command line values when running the API:
+
+ -Dmule.env=local -Dmule.key=Mulesoft12345678
